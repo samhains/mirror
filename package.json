@@ -1,0 +1,41 @@
+{
+  "name": "cloud",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --hot --inline",
+    "build": "webpack"
+  },
+  "gh-pages-deploy": {
+    "prep": [
+      "build"
+    ],
+    "noprompt": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxkolyanov/cloud.git"
+  },
+  "author": "Max Kolyanov",
+  "bugs": {
+    "url": "https://github.com/maxkolyanov/cloud/issues"
+  },
+  "homepage": "https://github.com/maxkolyanov/cloud#readme",
+  "dependencies": {
+    "gl-matrix": "^2.3.2",
+    "stats-js": "^1.0.0-alpha1",
+    "three": "^0.84.0",
+    "three-orbit-controls": "^82.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.0",
+    "gh-pages-deploy": "^0.4.2",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.2",
+    "webpack-glsl-loader": "^1.0.1"
+  }
+}
