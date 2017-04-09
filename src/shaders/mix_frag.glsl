@@ -98,25 +98,22 @@ void main() {
     vec3 t2 = texture2D(scene, vUv).rgb;
     vec3 t3 = texture2D(tex, vUv).rgb;
     vec3 t1 = getColor(vUv);
-    vec3 tt = (t1 + t2) * 0.75; //length(vUv - vec2(mouseX, mouseY));
+    vec3 tt = (t1 * t2) * 0.75; //length(vUv - vec2(mouseX, mouseY));
 
     // // vec2 st = vUv * rotate2d(noise(vUv.x * 50. + vUv.y * 50.));
 
-    // // vec3 color = texture2D( tex_or, t1.rb ).rgb * 0.5 + mix(t2, tt, 0.5);
-    // vec2 coord = vec2(
-    //  vUv.x - 0.05 * (length(vUv - t1.rb) * (0. + vUv.x)),
-    //  vUv.y - 0.05 * (length(vUv - t1.bg) * (0. + vUv.y))
-    // );
+    // vec3 color = texture2D( tex_or, t1.rb ).rgb * 0.5 + mix(t2, tt, 0.5);
+    vec2 coord = vec2(
+     vUv.x - 0.05 * (length(vUv - t1.rb) * (0.1 + vUv.x)),
+     vUv.y - 0.05 * (length(vUv - t1.gb) * (0.1 + vUv.y))
+    );
 
-    // vec3 hsv = rgb2hsv(texture2D( scene, vUv).rgb);
+    vec3 rgb;
+    rgb[0] = (texture2D( scene, coord).r);
+    rgb[1] = (texture2D( scene, coord + vec2(0.0025, 0.0)).g);
+    rgb[2] = (texture2D( scene, coord + vec2(0.005, 0.0)).b);
 
-    // hsv.r += 0.3;
-    // hsv.r = mod(hsv.r, 1.0);
-    // hsv.g *= sin(time);
-    // hsv.b = mod(hsv.b, 1.0);
-    // vec3 rgb = hsv2rgb(hsv); 
-
-    vec3 color = mix(mix(t2, t3, 0.95), tt, 0.1);//texture2D( tex_or, coord).rgb * 0.5 + mix(t2, tt, 0.5);
+    vec3 color = mix(mix(mix(t2, t3, 0.95), tt, 0.1), rgb, 0.15);//texture2D( tex_or, coord).rgb * 0.5 + mix(t2, tt, 0.5);
     
     gl_FragColor = vec4(color, 0.5);
 }
