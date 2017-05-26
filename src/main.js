@@ -140,7 +140,7 @@ function createBuffers() {
   screen3.position.set(0,0,-w);
   scene3.add(screen3);
 
-  let screenwarp = new THREE.Mesh(plane, shaderwarp);
+  let screenwarp = new THREE.Mesh(plane, shader3);
   screenwarp.position.set(0,0,-w);
   scenewarp.add(screenwarp);
 

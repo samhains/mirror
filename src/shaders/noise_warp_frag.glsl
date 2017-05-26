@@ -113,7 +113,7 @@ vec3 getTileWarp(in vec2 st) {
 
 
 vec3 getTile(in vec2 st) {
-    st = st * 5.;
+    st = st;
     float tile = 0.0;
     
     vec3 color;
@@ -150,7 +150,7 @@ vec3 getTile(in vec2 st) {
         color[j] = (tile + r_c/2.0) / 2.0;
     }
 
-    vec3 colortex1 = vec3(texture2D(tex, vec2(vUv.x + color.x, vUv.y + color.z) - color.y).rgb);
+    vec3 colortex1 = vec3(texture2D(tex, st).rgb);
     
     return colortex1;
 }
@@ -213,19 +213,12 @@ vec3 getTile3(in vec2 st) {
 void main() {
     vec2 st = vUv;
     // st.x *= resolution.x/resolution.y;
-    st = st * 2.0 - 1.0;
+    st = st ;
     
     vec3 fin;
     vec3 checkerboard;
 
-    if(mouseStatus == 1) {
-      checkerboard = getTileWarp(st);
-    } else if(mouseStatus == 0) {
-      checkerboard = getTile(st);
-    } else {
-      checkerboard = getTile3(st);
-    };
-    
+    checkerboard = getTile(st);
 
 
     gl_FragColor = vec4(checkerboard,1.0);
